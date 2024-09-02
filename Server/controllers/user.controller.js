@@ -347,7 +347,8 @@ export const submitBlog = async (req, res, next) => {
         const newBlog = new Blog(req.body);
 
         await newBlog.save();
-
+        console.log(newBlog._id);
+        user.blogs.push(newBlog._id);
         const adminUsers = await User.find({ isAdmin: true });
 
         const adminNotificationTemplate = {
